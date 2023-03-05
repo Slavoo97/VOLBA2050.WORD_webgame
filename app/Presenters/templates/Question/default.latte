@@ -1,0 +1,81 @@
+{block #content}
+    <div class="wrapper">
+        <h1 class="year">
+            {$question->getYear()}
+        </h1>
+        <div class="start-img">
+            <img src="/img/{$question->getImgurl()}" alt="">
+        </div>
+        <h4 class="question-header">
+            {$question->getQuestionName()}
+        </h4>
+        <div class="answer-wrapper">
+            {foreach $answers as $answer}
+            <a n:href="answer! $answer->getId()" class="answer-link">
+                <div class="answer">
+                    <p class="a-marker">{$answer->getMarker()}</p>
+                    <p style="margin: 0;">{$answer->getAnswerText()}</p>
+                </div>
+            </a>
+            {/foreach}
+        </div>
+    </div>
+    <style>
+
+        .a-marker{
+            font-family: 'Fact-black', sans-serif;
+            font-size: 50px;
+            margin: 0 20px 0 0;
+        }
+        .year{
+            font-family: 'Fact-black', sans-serif;
+            font-size: 4em;
+        }
+
+        .question-header{
+
+        }
+        .answer-wrapper{
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .answer-link{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .answer{
+            width: 1000px;
+            border: 1px solid #000000;
+            border-radius: 15px;
+            margin: 10px 10px;
+            padding: 15px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .answer:hover{
+            border: 2px solid #000000;
+            transition: 0.3s;
+        }
+
+        .wrapper{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .start-img img{
+            max-width: 400px;
+        }
+
+    </style>
+{/block}

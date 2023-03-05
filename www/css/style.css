@@ -1,0 +1,155 @@
+@font-face {
+    font-family: Fact-black;
+    src: url("/fonts/fact-black.ttf");
+}
+
+body{
+    font-family: 'Monograf', monospace;
+    background-color: #fff;
+    padding-top: 90px;
+    font-size: 15px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+a:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.navbar{
+
+}
+
+.navbar-nav a {
+    margin-right: 60px;
+}
+
+.nav-item{
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.navbar-brand{
+    font-family: 'Fact-black', sans-serif;
+    font-size: 35px;
+    font-weight: 400;
+}
+
+.active{
+    color: #546fff!important;
+    border-bottom: 2px #3d5af1 solid;
+}
+
+.post-block{
+    background-color: #ffffff;
+    margin: 35px 0px 35px 0px;
+    border-radius: 8px;
+    padding: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
+}
+
+.post-block .date-block{
+    color: #b8b6c5;
+}
+
+.post-block .author-p{
+    color: #797979;
+    font-size: 0.9em;;
+}
+
+.post-block .text-p{
+    color: #797979;
+}
+
+.post-block .comment-block{
+    color: #b8b6c5;
+}
+
+.count-of-open-posts{
+    color: #797979;
+}
+
+.add-btn{
+    background-color: #3d5af1;
+    border-color: #3d5af1;
+    color: #ffffff;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.vote-block{
+    font-size: 1.3em;
+    color: #aaaaaa;
+}
+
+.vote-block:first-child .vote-up{
+    color:#3d5af1;
+}
+
+.single-post-detail{
+    margin-top: 30px;
+    padding-left: 0px;
+}
+
+.single-post-text{
+    margin-top:30px;
+    padding-left: 0px;
+}
+
+.single-post-date{
+    color: #797979;
+    font-size: 0.8em;;
+}
+
+.avatar{
+    height:45px;
+    width:45px;
+    border: 2px #000000 solid;
+    border-radius: 50%;
+    margin-right:20px;
+}
+
+.avatar-icon{
+    margin-left: 13px;
+    margin-top: 13px;
+}
+.comment-row{
+    margin-left: 60px;
+    border-bottom: 1px #e2e2e2 solid;
+}
+
+#frm-postForm{
+    width:100%;
+}
+
+.post-text{
+    width: 100%;
+}
+
+.color-blue{
+    color:#3d5af1;
+}
+
+.sign-block{
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
+    border-radius: 8px;
+    margin-top: 50px;
+    padding: 60px;
+    padding-left: 30px;
+}
+
+.login-alt{
+    margin-top: 60px;
+}
+
+.social-i{
+    margin-right: 15px;
+    font-size: 1.9em;
+}
