@@ -24,7 +24,7 @@
         </div>
     </div>
     {/if}
-    <div class="wrapper">
+    <div class="wrapper" id="wrp-hide" style="display: none">
         <h1 class="year">
             {$question->getYear()}
         </h1>
@@ -92,7 +92,7 @@
             transition: 0.3s;
         }
 
-        .wrapper{
+        #wrp-hide{
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -137,6 +137,21 @@
     </style>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {if $question->getNumber() != 1}
+        <script type="text/javascript">
+            $(document).ready(function() {
+                setTimeout(function() {
+                    $('#wrp-hide').show();
+                }, 500);
+            });
+        </script>
+    {else}
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#wrp-hide').show();
+            });
+        </script>
+    {/if}
     <script type="text/javascript">
         $(window).on('load', function() { // Po načítaní stránky
             $('#exampleModalCenter').modal('show'); // Zobrazí modálne okno

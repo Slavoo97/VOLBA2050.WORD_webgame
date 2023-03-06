@@ -11,6 +11,7 @@ namespace App\Presenters;
 use App\Model\Services\AnswerQuestionRepository;
 use App\Model\Services\AnswerRepository;
 use App\Model\Services\QuestionRepository;
+use App\Model\Services\RatingRepository;
 use App\Model\Services\SessionRepository;
 use Nette;
 use Nette\DI\Attributes\Inject;
@@ -27,6 +28,9 @@ class QuestionPresenter extends Nette\Application\UI\Presenter
 
     #[Inject]
     public AnswerRepository $answerRepository;
+
+    #[Inject]
+    public RatingRepository $ratingRepository;
 
     #[Inject]
     public AnswerQuestionRepository $answerQuestionRepository;
@@ -51,9 +55,12 @@ class QuestionPresenter extends Nette\Application\UI\Presenter
 
     public function actionSummary($points)
     {
+        $rating = $this->ratingRepository->findRatingInRange((int)$points)[0];
+        $this->template->ratingText = $rating->getRatingText();
+        $this->template->ratingHeader = $rating->getRatingHeader();
+        $this->template->ratingImage = $rating->getRatingImage();
         $this->getTemplate()->points = $points;
         $this->setView('summary');
-
     }
 
     public function handleAnswer(int $answerQuestionId){
@@ -76,7 +83,7 @@ class QuestionPresenter extends Nette\Application\UI\Presenter
                 $points = $this->answerRepository->countPoints($actualSession);
 
                 $this->session->destroy();
-                $this->redirect('summary', $points);
+                $this->redirect('summary', [$points]);
 
             }else{
                 $this->questionNumber++;

@@ -54,6 +54,13 @@ class Rating
     private $ratingHeader;
 
     /**
+     *
+     * @ORM\Column(type="string", nullable = false)
+     * @var string
+     */
+    private $ratingImage;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -131,6 +138,24 @@ class Rating
     public function setRatingHeader(string $ratingHeader): void
     {
         $this->ratingHeader = $ratingHeader;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRatingImage(): string
+    {
+        return $this->ratingImage;
+    }
+
+    /**
+     * @param string $ratingImage
+     * @return Rating
+     */
+    public function setRatingImage(string $ratingImage): Rating
+    {
+        $this->ratingImage = $ratingImage;
+        return $this;
     }
 
 }
