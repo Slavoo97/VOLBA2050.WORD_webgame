@@ -68,6 +68,20 @@ class Question
     private $imgurl;
 
     /**
+     *
+     * @ORM\Column(type="text", nullable = false)
+     * @var text
+     */
+    private $introQuestionText;
+
+    /**
+     *
+     * @ORM\Column(type="string", nullable = false)
+     * @var string
+     */
+    private $introImgurl;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -162,6 +176,60 @@ class Question
     public function setImgurl(string $imgurl): Question
     {
         $this->imgurl = $imgurl;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumber(): int
+    {
+        return $this->number;
+    }
+
+    /**
+     * @param int $number
+     * @return Question
+     */
+    public function setNumber(int $number): Question
+    {
+        $this->number = $number;
+        return $this;
+    }
+
+    /**
+     * @return text
+     */
+    public function getIntroQuestionText()
+    {
+        return $this->introQuestionText;
+    }
+
+    /**
+     * @param text $introQuestionText
+     * @return Question
+     */
+    public function setIntroQuestionText($introQuestionText): Question
+    {
+        $this->introQuestionText = $introQuestionText;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIntroImgurl(): string
+    {
+        return $this->introImgurl;
+    }
+
+    /**
+     * @param string $introImgurl
+     * @return Question
+     */
+    public function setIntroImgurl(string $introImgurl): Question
+    {
+        $this->introImgurl = $introImgurl;
         return $this;
     }
 
