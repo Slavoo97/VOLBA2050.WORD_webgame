@@ -4,17 +4,21 @@
     <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Situácia</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div class="modal-header" style="border-bottom: none">
+                    <a class="navbar-brand d-flex align-items-end"  n:href="homepage:default">
+                        <span>VOĽBA2050.KOŠICE</span>
+                    </a>
                 </div>
                 <div class="modal-body">
                     <div style="display: flex;align-items: center;justify-content: center; margin-bottom: 15px">
                         <img src="/img/{$introImg}" alt="intro_image" style="max-width: 450px;">
                     </div>
-                    {$introText|noescape}
+                    <div class="intro-text">
+                        {$introText|noescape}
+                    <button type="button" class="btn" data-dismiss="modal" aria-label="Close" style="background-color: transparent;border: 1px solid #000000;border-radius: 15px;padding:10px 20px ">
+                        <span>Prejsť na otázku</span>
+                    </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -24,12 +28,12 @@
         <h1 class="year">
             {$question->getYear()}
         </h1>
-        <div class="start-img">
-            <img src="/img/{$question->getImgurl()}" alt="">
-        </div>
         <h4 class="question-header">
             {$question->getQuestionName()}
         </h4>
+        <p class="question-text">
+            {$question->getQuestionText()}
+        </p>
         <div class="answer-wrapper">
             {foreach $answers as $answer}
             <a n:href="answer! $answer->getId()" class="answer-link">
@@ -57,7 +61,7 @@
 
         }
         .answer-wrapper{
-            margin-top: 30px;
+            margin-top: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -97,6 +101,38 @@
         .start-img img{
             max-width: 400px;
         }
+        .modal {
+            padding: 0 !important; // override inline padding-right added from js
+        }
+        .modal .modal-dialog {
+            width: 100%;
+            max-width: none;
+            height: 100%;
+            margin: 0;
+        }
+        .modal .modal-content {
+            height: 100%;
+            border: 0;
+            border-radius: 0;
+        }
+        .modal .modal-body {
+            overflow-y: auto;
+        }
+        .intro-text{
+            margin: 0px auto;
+            margin-top: 20px;
+            max-width: 900px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .question-text{
+            max-width: 900px;
+            text-align: center;
+        }
+
 
     </style>
 

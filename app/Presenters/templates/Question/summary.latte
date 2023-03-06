@@ -1,3 +1,42 @@
 {block #content}
-   <p>dosiahol si: {$points} bodov</p>
+   <div class="wrapper">
+      <div class="start-img">
+         <img src="/img/kosice1.jpg" alt="">
+      </div>
+      <h1 class="year">
+         Dosiahnutý počet bodov: {$points}
+      </h1>
+      <h4 class="rating-header">
+         Košice sú klimaticky najodolnejšie mesto na Slovensku!
+      </h4>
+      <p class="rating-text">
+         Hoci klimatická kríza pokročila, mesto nepodcenilo prípravu na nárast teplôt a s nimi súvisiace nebezpečenstvá. Medzi mestami Slovenska sú Košice lídrom ako pomáhať občanom čeliť klimatickej zmene, ale aj v radikálnom znižovaní emisií. Košice sú konečne uhlíkovo neutrálne a to je dôvod na malú oslavu. Veľkú spokojnosť s opatreniami mesta vyjadrujú aj obyvatelia mesta. Zástupcovia miest a obcí z celej krajiny navštevujú mesto, aby získali know-how. To je dôležité, pretože čím viac miest na celom svete nastúpi na cestu dekarbonizácie, tým väčšia je nádej, že do konca storočia otepľovanie zastavíme. Čo je však dôležité, mesto myslelo aj na najohrozenejšie vrstvy obyvateľstva, ktorých sociálna situácia sa napriek všetkým dopadom zmeny klímy oproti minulosti zlepšila. Ak by podobne ako naše mesto zareagoval na klimatickú krízu svet, znamenalo by to, že by priemerná ročná teplota v roku 2100 (pre Košice a Slovensko) bola len o čosi vyššia ako 3°C oproti predindustriálnemu obdobiu a pravdepodobne by sa mohla časom stabilizovať, alebo aj klesať.
+      </p>
+   </div>
+   <style>
+
+      .year{
+         font-family: 'Fact-black', sans-serif;
+         font-size: 4em;
+      }
+
+      .wrapper{
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+      }
+      .start-img img{
+         max-width: 400px;
+      }
+
+      .rating-text{
+         margin-top: 20px;
+         max-width: 900px;
+         text-align: center;
+      }
+
+   </style>
+
+
 {/block}
