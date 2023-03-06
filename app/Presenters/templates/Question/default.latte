@@ -1,4 +1,25 @@
 {block #content}
+    {if $introText}
+    <!-- Modal -->
+    <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Situácia</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div style="display: flex;align-items: center;justify-content: center; margin-bottom: 15px">
+                        <img src="/img/{$introImg}" alt="intro_image" style="max-width: 450px;">
+                    </div>
+                    {$introText|noescape}
+                </div>
+            </div>
+        </div>
+    </div>
+    {/if}
     <div class="wrapper">
         <h1 class="year">
             {$question->getYear()}
@@ -78,4 +99,11 @@
         }
 
     </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(window).on('load', function() { // Po načítaní stránky
+            $('#exampleModalCenter').modal('show'); // Zobrazí modálne okno
+        });
+    </script>
 {/block}

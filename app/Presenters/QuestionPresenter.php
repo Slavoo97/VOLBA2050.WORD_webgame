@@ -45,7 +45,8 @@ class QuestionPresenter extends Nette\Application\UI\Presenter
     {
         $this->template->question = $this->questionRepository->findOneQuestionBy(['number' => $this->questionNumber]);
         $this->template->answers = $this->answerQuestionRepository->findByQuestion($this->template->question->getId());
-
+        $this->template->introImg = $this->template->question->getIntroImgurl();
+        $this->template->introText = $this->template->question->getIntroQuestionText();
     }
 
     public function actionSummary($points)
