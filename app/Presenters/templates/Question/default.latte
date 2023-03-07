@@ -1,3 +1,6 @@
+{if $eventKey}
+{var $hasKey = $eventKey}
+{/if}
 {block #content}
     {if $introText}
     <!-- Modal -->
@@ -5,9 +8,15 @@
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header" style="border-bottom: none">
-                    <a class="navbar-brand d-flex align-items-end" n:href="Homepage:default">
-                        <span>VOĽBA2050.KOŠICE</span>
-                    </a>
+                    {if $hasKey}
+                        <a class="navbar-brand d-flex align-items-end" n:href="Homepage:default $hasKey">
+                            <span>VOĽBA2050.KOŠICE</span>
+                        </a>
+                    {else}
+                        <a class="navbar-brand d-flex align-items-end" n:href="Homepage:default">
+                            <span>VOĽBA2050.KOŠICE</span>
+                        </a>
+                    {/if}
                 </div>
                 <div class="modal-body">
                     <div style="display: flex;align-items: center;justify-content: center; margin-bottom: 15px">
@@ -36,7 +45,7 @@
         </p>
         <div class="answer-wrapper">
             {foreach $answers as $answer}
-            <a n:href="answer! $answer->getId()" class="answer-link">
+            <a n:href="answer! $answer->getId(), $eventKey" class="answer-link">
                 <div class="answer">
                     <p class="a-marker">{$answer->getMarker()}</p>
                     <p style="margin: 0;">{$answer->getAnswerText()}</p>

@@ -14,6 +14,9 @@ class HomepagePresenter extends Nette\Application\UI\Presenter
 {
     public function renderDefault($eventKey)
     {
+        if ($this->session->isStarted()){
+            $this->session->destroy();
+        }
         $this->template->eventKey = $eventKey;
     }
 }

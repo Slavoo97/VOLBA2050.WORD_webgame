@@ -37,12 +37,16 @@ class QuestionPresenter extends Nette\Application\UI\Presenter
 
     private $questionNumber = 1;
 
+    public $eventKey;
+
     public function actionDefault($eventKey, $questionNumber)
     {
         if(!$this->sessionRepository->findSessionBy(['token' => $this->session->getId()])){
             $this->session->start();
             $this->sessionRepository->create($this->session->getId(), new DateTime(), null, $eventKey);
         }
+        $this->eventKey = $eventKey;
+        $this->template->eventKey = $this->eventKey;
         $this->questionNumber = (int)$questionNumber;
     }
     public function renderDefault()
@@ -53,7 +57,7 @@ class QuestionPresenter extends Nette\Application\UI\Presenter
         $this->template->introText = $this->template->question->getIntroQuestionText();
     }
 
-    public function actionSummary($points, $totalPoints)
+    public function actionSummary($points, $totalPoints, $eventKey = null)
     {
         $rating = $this->ratingRepository->findRatingInRange((int)$points)[0];
         $this->template->ratingText = $rating->getRatingText();
@@ -61,15 +65,16 @@ class QuestionPresenter extends Nette\Application\UI\Presenter
         $this->template->ratingImage = $rating->getRatingImage();
         $this->getTemplate()->points = $points;
         $this->getTemplate()->totalPoints = $totalPoints;
+        $this->getTemplate()->eventKey = $eventKey;
         $this->setView('summary');
     }
 
-    public function handleAnswer(int $answerQuestionId){
+    public function handleAnswer(int $answerQuestionId, string $eventKey = null){
 
         try {
             $actualSession = $this->sessionRepository->findOneSessionBy(['token' => $this->session->getId()]);
             if(!$actualSession){
-                $actualSession = $this->sessionRepository->create($this->session->getId(), new DateTime(), null, null);
+                $actualSession = $this->sessionRepository->create($this->session->getId(), new DateTime(), null, $eventKey);
             }
             $answerQuestion = $this->answerQuestionRepository->getById($answerQuestionId);
             $this->answerRepository->create($actualSession, $answerQuestion->getQuestion(), $answerQuestion);
@@ -90,12 +95,11 @@ class QuestionPresenter extends Nette\Application\UI\Presenter
                     $points = $totalPoints;
                 }
 
-                $this->session->destroy();
-                $this->redirect('summary', [$points, $totalPoints]);
+                $this->redirect('summary', [$points, $totalPoints, $this->eventKey]);
 
             }else{
                 $this->questionNumber++;
-                $this->redirect('default', [null, $this->questionNumber]);
+                $this->redirect('default', [$eventKey, $this->questionNumber]);
             }
         }catch (InvalidArgumentException){
 

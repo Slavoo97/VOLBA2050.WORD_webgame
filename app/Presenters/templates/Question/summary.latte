@@ -1,3 +1,6 @@
+{if $eventKey}
+   {var $hasKey = $eventKey}
+{/if}
 {block #content}
    <div class="wrapper">
       <div class="start-img">
@@ -12,7 +15,7 @@
       <p class="rating-text">
          {$ratingText}
       </p>
-      <a style="margin-top: 40px" n:href="Homepage:default"><span class="start-button">Hrať znova</span></a>
+      <a style="margin-top: 40px" n:href="Homepage:default $eventKey"><span class="start-button">Hrať znova</span></a>
    </div>
    <style>
 
