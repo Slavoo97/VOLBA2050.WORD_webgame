@@ -156,5 +156,19 @@
         $(window).on('load', function() { // Po načítaní stránky
             $('#exampleModalCenter').modal('show'); // Zobrazí modálne okno
         });
+
+        var timer = null;
+
+        function resetTimer() {
+            clearTimeout(timer);
+            timer = setTimeout(function() {
+                window.location.href = {link Homepage:default};
+            }, 60000); // 60,000 milisekúnd = 1 minúta
+        }
+
+        $(document).on('mousemove keydown', function() {
+            resetTimer();
+        });
+
     </script>
 {/block}

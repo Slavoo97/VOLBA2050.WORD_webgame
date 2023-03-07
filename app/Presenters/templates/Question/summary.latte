@@ -39,4 +39,19 @@
          text-align: center;
       }
    </style>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script type="text/javascript">
+      var timer = null;
+
+      function resetTimer() {
+         clearTimeout(timer);
+         timer = setTimeout(function() {
+            window.location.href = {link Homepage:default};
+         }, 60000); // 60,000 milisekúnd = 1 minúta
+      }
+
+      $(document).on('mousemove keydown', function() {
+         resetTimer();
+      });
+   </script>
 {/block}

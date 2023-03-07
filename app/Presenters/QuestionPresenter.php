@@ -81,6 +81,9 @@ class QuestionPresenter extends Nette\Application\UI\Presenter
                 );
 
                 $points = $this->answerRepository->countPoints($actualSession);
+                if ($points > 28){
+                    $points = 28;
+                }
 
                 $this->session->destroy();
                 $this->redirect('summary', [$points]);
