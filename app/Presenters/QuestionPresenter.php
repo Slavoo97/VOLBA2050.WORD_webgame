@@ -53,13 +53,14 @@ class QuestionPresenter extends Nette\Application\UI\Presenter
         $this->template->introText = $this->template->question->getIntroQuestionText();
     }
 
-    public function actionSummary($points)
+    public function actionSummary($points, $totalPoints)
     {
         $rating = $this->ratingRepository->findRatingInRange((int)$points)[0];
         $this->template->ratingText = $rating->getRatingText();
         $this->template->ratingHeader = $rating->getRatingHeader();
         $this->template->ratingImage = $rating->getRatingImage();
         $this->getTemplate()->points = $points;
+        $this->getTemplate()->totalPoints = $totalPoints;
         $this->setView('summary');
     }
 
@@ -81,12 +82,16 @@ class QuestionPresenter extends Nette\Application\UI\Presenter
                 );
 
                 $points = $this->answerRepository->countPoints($actualSession);
-                if ($points > 28){
-                    $points = 28;
+                $totalPoints = 0;
+                foreach ($this->answerQuestionRepository->findBy(['points' => 2]) as $ttl) {
+                    $totalPoints+= $ttl->getPoints();
+                }
+                if ($points > $totalPoints){
+                    $points = $totalPoints;
                 }
 
                 $this->session->destroy();
-                $this->redirect('summary', [$points]);
+                $this->redirect('summary', [$points, $totalPoints]);
 
             }else{
                 $this->questionNumber++;
