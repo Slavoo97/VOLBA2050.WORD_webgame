@@ -17,6 +17,7 @@ use Nette;
 use Nette\DI\Attributes\Inject;
 use Nette\Utils\DateTime;
 use Symfony\Component\String\Exception\InvalidArgumentException;
+use Tracy\Debugger;
 
 class QuestionPresenter extends Nette\Application\UI\Presenter
 {
@@ -48,6 +49,11 @@ class QuestionPresenter extends Nette\Application\UI\Presenter
         $this->eventKey = $eventKey;
         $this->template->eventKey = $this->eventKey;
         $this->questionNumber = (int)$questionNumber;
+        $this->template->years = [];
+        $questions = $this->questionRepository->findBy([]);
+        foreach ($questions as $question) {
+            $this->template->years[$question->getId()] = $question->getYear();
+        }
     }
     public function renderDefault()
     {
@@ -106,6 +112,4 @@ class QuestionPresenter extends Nette\Application\UI\Presenter
         }
 
     }
-
-
 }
