@@ -1,5 +1,7 @@
 {if $eventKey}
    {var $hasKey = $eventKey}
+{else}
+   {var $hasKey = null}
 {/if}
 {block #content}
    <div class="wrapper">
@@ -56,7 +58,12 @@
       function resetTimer() {
          clearTimeout(timer);
          timer = setTimeout(function() {
-            window.location.href = {link Homepage:default};
+            window.location.href =
+            {if $hasKey}
+               {link Homepage:default $hasKey}
+            {else}
+               {link Homepage:default}
+            {/if}
          }, 60000); // 60,000 milisekúnd = 1 minúta
       }
 
